@@ -1,0 +1,1 @@
+import globals from 'globals'; export default [{ languageOptions: { ecmaVersion: 'latest', sourceType: 'module', globals: { ...globals.browser, ...globals.node, describe: 'readonly', test: 'readonly', expect: 'readonly' } }, rules: { 'no-unused-vars': 'off', 'semi': 'off', 'quotes': 'off' } }];
