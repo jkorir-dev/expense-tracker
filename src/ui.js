@@ -85,3 +85,16 @@ function escapeHtml(str) {
 }
 
 export { elements };
+
+export function toggleAuthView(loggedIn) {
+  const overlay = document.getElementById('auth-overlay');
+  const container = document.querySelector('.app-container');
+  if (loggedIn) {
+    overlay.classList.add('hidden');
+    container.classList.remove('blur-content');
+  } else {
+    overlay.classList.remove('hidden');
+    container.classList.add('blur-content');
+  }
+}
+
