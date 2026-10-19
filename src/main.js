@@ -1,7 +1,7 @@
 import { fetchExchangeRates } from './api.js';
 import { getState, setRates, setHomeCurrency, addExpense } from './state.js';
 import { renderApp, getFormInputs, clearForm, showStatus, hideStatus, restrictToPastDates, populateCurrencyDatalist, toggleAuthView, elements } from './ui.js';
-import { registerUser, loginUser, isUserLoggedIn } from './auth.js';
+import { registerUser, loginUser, isUserLoggedIn, clearSession } from './auth.js';
 
 let isSignUpMode = false;
 
@@ -21,13 +21,23 @@ async function handleSyncRates() {
 
 document.addEventListener('DOMContentLoaded', () => {
   restrictToPastDates();
-  toggleAuthView(isUserLoggedIn());
+  
+  const loggedIn = isUserLoggedIn();
+  toggleAuthView(loggedIn);
+  
+  if (loggedIn) {
+    const activeUser = sessionStorage.getItem('active_session');
+    if (activeUser) {
+      document.getElementById('profile-email').textContent = activeUser;
+    }
+  }
 
   const authForm = document.getElementById('auth-form');
   const toggleLink = document.getElementById('auth-toggle-link');
   const authTitle = document.getElementById('auth-title');
   const submitBtn = document.getElementById('auth-submit-btn');
   const toggleMsg = document.getElementById('auth-toggle-msg');
+  const logoutBtn = document.getElementById('logout-btn');
 
   toggleLink.addEventListener('click', (e) => {
     e.preventDefault();
@@ -50,12 +60,19 @@ document.addEventListener('DOMContentLoaded', () => {
         toggleLink.click();
       } else {
         loginUser(email, password);
+        document.getElementById('profile-email').textContent = email;
         toggleAuthView(true);
         handleSyncRates();
       }
     } catch (err) {
       alert(err.message);
     }
+  });
+
+  logoutBtn.addEventListener('click', () => {
+    clearSession();
+    document.getElementById('profile-email').textContent = 'Loading session...';
+    toggleAuthView(false);
   });
 
   elements.form.addEventListener('submit', (e) => {
@@ -82,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderApp(getState());
   });
 
-  if (isUserLoggedIn()) {
+  if (loggedIn) {
     handleSyncRates();
   }
 });
