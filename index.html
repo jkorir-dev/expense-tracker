@@ -1,124 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Expense Tracker</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f7fb">
+    <meta name="description" content="Sign in to your Global Expense Tracker account.">
+    <title>Sign in · Global Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div id="auth-overlay" class="auth-overlay">
-  <div class="auth-card">
-    <h2 id="auth-title">Welcome to Expense Tracker</h2>
-    <form id="auth-form">
-      <div class="form-group">
-        <label for="auth-email">Email Address</label>
-        <input type="email" id="auth-email" placeholder="name@domain.com" required>
-      </div>
-      <div class="form-group">
-        <label for="auth-password">Password</label>
-        <input type="password" id="auth-password" placeholder="••••••••" required>
-      </div>
-      <button type="submit" id="auth-submit-btn" class="btn-primary">Log In</button>
-    </form>
-    <p class="auth-toggle-text">
-      <span id="auth-toggle-msg">Don't have an account?</span> 
-      <a href="#" id="auth-toggle-link">Sign Up</a>
-    </p>
-  </div>
-</div>
+<body class="auth-page">
+    <main class="login-shell">
+        <section class="login-card" aria-labelledby="login-title">
+            <a class="brand" href="./" aria-label="Global Expense Tracker home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 17.5 9 12l3.2 3.2L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 7H20v4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Global Expense Tracker</span>
+            </a>
 
-  <div class="app-container">
-    <header>
-      <h1>Multi-Currency Expense Tracker</h1>
-      <div class="global-controls">
-        <div class="control-group">
-          <label for="home-currency">Home Currency:</label>
-          <input type="text" id="home-currency" list="currency-list" value="USD">
-        </div>
-      </div>
-    </header>
+            <div class="login-content" id="login-content">
+                <p class="eyebrow">YOUR FINANCES, IN ONE PLACE</p>
+                <h1 id="login-title">Welcome back</h1>
+                <p class="login-description" id="login-description">Sign in to see your spending clearly, wherever life takes you.</p>
 
-    <div id="status-message" class="status-message hidden"></div>
+                <form id="auth-form" class="login-form">
+                    <div class="field-group">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" minlength="6" required>
+                    </div>
+                    <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+                    <button class="login-button" id="submit-button" type="submit">Sign in</button>
+                </form>
 
-    <main class="main-content">
-      <section class="form-section">
-        <h2>Log New Expense</h2>
-        <form id="expense-form">
-          <div class="form-group">
-            <label for="exp-desc">Description</label>
-            <input type="text" id="exp-desc" placeholder="e.g., Coffee, Train Ticket" required>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="exp-amount">Amount</label>
-              <input type="number" id="exp-amount" step="0.01" min="0.01" placeholder="0.00" required>
+                <p class="mode-switch" id="mode-switch-copy">New here? <button type="button" class="text-button" id="mode-switch">Create an account</button></p>
+
+                <div class="signed-in-panel" id="signed-in-panel" hidden>
+                    <span class="signed-in-icon" aria-hidden="true">✓</span>
+                    <h2>You’re signed in</h2>
+                    <p id="signed-in-email"></p>
+                    <button class="login-button secondary-button" id="sign-out-button" type="button">Sign out</button>
+                </div>
             </div>
-            <div class="form-group">
-              <label for="exp-currency">Currency</label>
-              <input type="text" id="exp-currency" list="currency-list" placeholder="USD" required>
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="exp-date">Date of Purchase</label>
-              <input type="date" id="exp-date" required>
-            </div>
-            <div class="form-group">
-              <label for="exp-category">Category</label>
-              <select id="exp-category">
-                <option value="Food">Food</option>
-                <option value="Transport">Transport</option>
-                <option value="Shopping">Shopping</option>
-                <option value="Entertainment">Entertainment</option>
-              </select>
-            </div>
-          </div>
-          <button type="submit" class="btn-primary">Add Expense</button>
-        </form>
-      </section>
 
-      <section class="ledger-section">
-        <div class="ledger-header">
-          <h2>Expenses Ledger</h2>
-          <div class="filter-group">
-            <label for="filter-category">Filter:</label>
-            <select id="filter-category">
-              <option value="All">All Categories</option>
-              <option value="Food">Food</option>
-              <option value="Transport">Transport</option>
-              <option value="Shopping">Shopping</option>
-              <option value="Entertainment">Entertainment</option>
-            </select>
-          </div>
-        </div>
+            <p class="card-footer">Securely manage your money across currencies.</p>
+        </section>
 
-        <div class="table-wrapper">
-          <table class="expense-table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Original Price</th>
-                <th>Converted Value</th>
-              </tr>
-            </thead>
-            <tbody id="expense-list">
-            </tbody>
-          </table>
-        </div>
-
-        <div class="summary-card">
-          <h3>Total Aggregated Spending</h3>
-          <p id="total-display" class="total-amount">0.00 USD</p>
-        </div>
-      </section>
+        <aside class="welcome-panel" aria-label="Expense tracker features">
+            <div class="welcome-decoration decoration-one" aria-hidden="true"></div>
+            <div class="welcome-decoration decoration-two" aria-hidden="true"></div>
+            <div class="welcome-copy">
+                <span class="panel-kicker"><span class="live-dot"></span> A clearer view of your money</span>
+                <h2>Spend with<br>more confidence.</h2>
+                <p>Track expenses in any currency and keep your whole financial picture within reach.</p>
+            </div>
+            <div class="preview-card" aria-hidden="true">
+                <div class="preview-heading"><span>This month</span><span class="preview-menu">•••</span></div>
+                <p class="preview-label">Total spending</p>
+                <p class="preview-total">$2,480<span>.50</span></p>
+                <div class="preview-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                <div class="preview-footer"><span><b></b> Compared with last month</span><strong>−8.4%</strong></div>
+            </div>
+            <p class="panel-footnote">Simple tracking. Better decisions.</p>
+        </aside>
     </main>
-  </div>
 
-  <datalist id="currency-list"></datalist>
+    <main class="tracker-page" id="tracker-page" hidden>
+        <header class="tracker-header">
+            <a class="brand" href="./" aria-label="Global Expense Tracker home">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M4 17.5 9 12l3.2 3.2L20 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15.5 7H20v4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <span>Global Expense Tracker</span>
+            </a>
+            <div class="tracker-user"><span class="tracker-user-email" id="tracker-user-email"></span><button type="button" class="sign-out-link" id="dashboard-sign-out">Sign out</button></div>
+        </header>
 
-  <script type="module" src="src/main.js"></script>
+        <div class="tracker-container">
+            <div class="tracker-intro">
+                <div><p class="eyebrow">YOUR FINANCES, IN ONE PLACE</p><h1>Your expense overview</h1><p class="tracker-subtitle">Keep track of spending across currencies, all in one place.</p></div>
+                <label class="currency-control" for="home-currency">Home currency<select id="home-currency"><option>USD</option><option>EUR</option><option>GBP</option><option>KES</option><option>CAD</option><option>AUD</option><option>JPY</option><option>INR</option><option>CNY</option><option>ZAR</option></select></label>
+            </div>
+
+            <section class="overview-card" aria-label="Spending summary">
+                <div class="overview-icon" aria-hidden="true">↗</div>
+                <div><p class="overview-label">Total tracked expenses</p><p class="overview-total" id="total-display">0.00 USD</p></div>
+                <p class="overview-note">Converted to your home currency</p>
+            </section>
+
+            <div class="tracker-grid">
+                <section class="tracker-panel add-expense-panel" aria-labelledby="expense-form-title">
+                    <div class="panel-heading"><div><p class="eyebrow">NEW ENTRY</p><h2 id="expense-form-title">Add an expense</h2></div><span class="panel-heading-icon" aria-hidden="true">＋</span></div>
+                    <form id="expense-form" class="expense-form">
+                        <div class="field-group"><label for="exp-desc">What did you spend on?</label><input id="exp-desc" type="text" placeholder="e.g. Dinner with friends" required maxlength="100"></div>
+                        <div class="tracker-form-row">
+                            <div class="field-group"><label for="exp-amount">Amount</label><input id="exp-amount" type="number" min="0.01" step="0.01" placeholder="0.00" required></div>
+                            <div class="field-group"><label for="exp-currency">Currency</label><input id="exp-currency" list="currency-list" value="USD" placeholder="USD" maxlength="3" required><datalist id="currency-list"></datalist></div>
+                        </div>
+                        <div class="tracker-form-row">
+                            <div class="field-group"><label for="exp-date">Date</label><input id="exp-date" type="date" required></div>
+                            <div class="field-group"><label for="exp-category">Category</label><select id="exp-category" required><option value="Food">Food</option><option value="Transport">Transport</option><option value="Shopping">Shopping</option><option value="Entertainment">Entertainment</option><option value="Bills">Bills</option><option value="Other">Other</option></select></div>
+                        </div>
+                        <p class="status-message hidden" id="status-message" role="status" aria-live="polite"></p>
+                        <button class="login-button" type="submit">Add expense</button>
+                    </form>
+                </section>
+
+                <section class="tracker-panel expenses-panel" aria-labelledby="expenses-title">
+                    <div class="expenses-heading"><div class="panel-heading"><div><p class="eyebrow">YOUR ACTIVITY</p><h2 id="expenses-title">Recent expenses</h2></div></div><label class="filter-control" for="filter-category">Filter<select id="filter-category"><option value="All">All categories</option><option>Food</option><option>Transport</option><option>Shopping</option><option>Entertainment</option><option>Bills</option><option>Other</option></select></label></div>
+                    <div class="table-scroll"><table class="expenses-table"><thead><tr><th>Date</th><th>Description</th><th>Category</th><th>Original</th><th>Converted</th></tr></thead><tbody id="expense-list"></tbody></table></div>
+                    <p class="empty-expenses" id="empty-expenses">No expenses yet. Add your first expense to get started.</p>
+                </section>
+            </div>
+            <footer class="tracker-footer">Your expense data is saved in this browser.</footer>
+        </div>
+    </main>
+
+    <script type="module" src="src/login.js"></script>
 </body>
 </html>

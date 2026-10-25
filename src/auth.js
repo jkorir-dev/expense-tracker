@@ -10,7 +10,7 @@ export function registerUser(email, password) {
 export function loginUser(email, password) {
   const users = JSON.parse(localStorage.getItem('tracker_users')) || {};
   if (!users[email] || users[email] !== password) {
-    throw new Error('Invalid email profile parameters or password mismatch.');
+    throw new Error('No account found for this email, or the password is incorrect. Create an account if this is your first time here.');
   }
   sessionStorage.setItem('active_session', email);
 }

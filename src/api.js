@@ -1,5 +1,5 @@
 export async function fetchExchangeRates(baseCurrency) {
-  const url = `https://er-api.com{baseCurrency}`;
+  const url = `https://open.er-api.com/v6/latest/${encodeURIComponent(baseCurrency)}`;
   
   try {
     const response = await fetch(url);
